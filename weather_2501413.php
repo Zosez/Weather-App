@@ -1,5 +1,6 @@
 <?php
     header ('Content-Type:application/json');
+    $apikey="";
     $cityName=$_GET['cityName'];
     if (isset($cityName)){
         $servername='localhost';
@@ -44,7 +45,7 @@
         $select="SELECT * FROM weatherdata WHERE city='$cityName';";
         $result=mysqli_query($conn,$select);
         if (mysqli_num_rows($result)==0){
-            $url="https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=20df43109eab4978353e1a92004bc299&units=metric";
+            $url="https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=$apikey&units=metric";
             $response=file_get_contents($url);
             if ($response){
                 $data=json_decode($response,true);
